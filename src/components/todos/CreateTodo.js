@@ -2,35 +2,41 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 class CreateTodo extends Component {
-
   constructor() {
     super();
     this.state = {
-      text: '',
+      text: "",
     };
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
-    this.props.addTodo(this.state)
-  }
+    this.props.addTodo(this.state);
+    this.setState({
+      text: "",
+    });
+  };
 
   handleChange(event) {
     this.setState({
-      text: event.target.value
+      text: event.target.value,
     });
   }
 
   render() {
-    return(
+    return (
       <div>
         <form onSubmit={this.handleSubmit}>
-    	    <label>add todo</label>
-          <input type="text" onChange={(event) => this.handleChange(event)} value={this.state.text}/>
+          <label>add todo</label>
+          <input
+            type="text"
+            onChange={(event) => this.handleChange(event)}
+            value={this.state.text}
+          />
           <input type="submit" />
-       </form>
-     </div>
-   );
+        </form>
+      </div>
+    );
   }
 };
 
